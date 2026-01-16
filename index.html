@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrada de Mercadorias</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="container">
+    <header>
+      <h1>Entrada de Estoque</h1>
+      <p>StatuS Distribuidora de Alimentos</p>
+    </header>
+
+    <form id="entryForm" onsubmit="handleFormSubmit(event)">
+      <div class="form-group">
+        <label for="responsavel">Responsável</label>
+        <select id="responsavel" name="responsavel" required>
+          <option value="" disabled selected>Selecione o responsável...</option>
+          <option value="Andréia">Andréia</option>
+          <option value="Bruno">Bruno</option>
+          <option value="Ranieri">Ranieri</option>
+          <option value="Renan">Renan</option>
+          <option value="Tatu">Tatu</option>
+          <option value="Valéria">Valéria</option>
+          <option value="Leandro">Leandro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="produto">Produto</label>
+        <input type="text" id="produto" name="produto" placeholder="Carregando produtos..." required disabled autocomplete="off">
+        <ul id="suggestions-list" class="suggestions-list"></ul>
+      </div>
+
+      <div class="form-group">
+        <label for="quantidade">Quantidade (Caixas/Unid)</label>
+        <input type="number" id="quantidade" name="quantidade" min="1" placeholder="Ex: 10" required>
+      </div>
+
+      <button type="submit" id="btnSubmit">Confirmar Entrada</button>
+      <div id="loading">Salvando...</div>
+    </form>
+
+    <section class="history-section">
+      <h2>Últimos Lançamentos</h2>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Hora</th>
+            <th>Produto</th>
+            <th>Qtd</th>
+            <th>Resp.</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <tr><td colspan="4" style="text-align:center; padding: 1rem;">Carregando histórico...</td></tr>
+        </tbody>
+      </table>
+      <button type="button" id="btnViewAll" class="btn-secondary">Ver histórico completo</button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">Mensagem aqui</div>
+
+  <!-- Modal de Histórico Completo -->
+  <div id="historyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Histórico Completo</h2>
+      <div style="overflow-x: auto;">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Produto</th>
+              <th>Qtd</th>
+              <th>Resp.</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="fullHistoryBody">
+            <tr><td colspan="5" style="text-align:center;">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
